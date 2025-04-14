@@ -1,0 +1,146 @@
+import React, {useState} from "react";
+
+
+const FormValidation = () => {
+
+    let [user, setUser] = useState({
+        name : "",
+        email : "",
+        password : "",
+        confirmPassword : ""
+    })
+
+    let [error, setError] = useState("")
+    let [success, setSuccess] = useState("")
+
+
+    // let [errorObj , setErrorObj] = useState({
+    //     name : "",
+    //     email : "",
+    //     password : "",
+    //     confirmPassword : ""
+    // })
+
+    let {name, email, password, confirmPassword} = user;
+
+    console.log(user);
+
+    // function updateName(e){
+    //     // user.name = e.target.value
+    //     // setUser(e.target.value )
+    //     setUser({...user, name : e.target.value})
+    // }
+    // function updateEmail(e){
+    //     setUser({...user,  email : e.target.value})
+    // }
+
+    // function updatePassword(e){
+    //     setUser({...user,password : e.target.value})
+    // }
+
+    // function updateConfirmPassword(e){
+    //     setUser({...user,confirmPassword : e.target.value})
+    // }
+
+    function updateFields(e){
+        let value = e.target.value;
+        let key = e.target.name;
+
+        setUser({...user, [key] : value})
+        error && setError("")
+        success &&  setSuccess("")
+    }
+  
+    function handleSubmit(e){
+        e.preventDefault()
+
+         
+
+        if(!name || !email || !password || !confirmPassword){
+            // alert("All Fields are Required")
+            setError("All Fields are Required")
+            // setErrorObj({...errorObj, name : "All Fields are Required"})
+            return
+        }
+        // check if he has enetered his full name:  
+        if(!name.trim().includes(" ")){
+            // alert("Please Enter Your Full Name")
+            setError("Please Enter Your Full Name")
+            return
+        }
+
+        if(!email.includes("@")){
+            // alert("Please Enter Valid Email")
+            setError("Please Enter Valid Email")
+            return
+        }
+        if(password.length < 6){
+            // alert("Password must be atleast 8 characters long")
+            setError("Password must be atleast 8 characters long")
+            return
+        }
+
+        if(password !== confirmPassword){
+            // alert("Password and Confirm Password must be same")
+            setError("Password and Confirm Password must be same")
+            return
+        }
+
+        // alert("Form Submitted Successfully")
+        setSuccess("Form Submitted Successfully")
+        setError("")
+        setUser({
+            name : "",
+            email : "",
+            password : "",
+            confirmPassword : ""
+        })
+
+    }
+
+
+
+
+    return(
+        <div>
+            <h1>Form Validation</h1>
+
+            {error && <p style={{color:"red"}}>{error}</p>}
+            {success && <p style={{color : "green"}}>{success}</p>}
+
+
+
+            <form onSubmit={handleSubmit}>
+                <input type="text"  
+                 placeholder="Enter Your Name"
+                 onChange={updateFields}
+                 name="name"
+                 value={name}
+                />
+                <input type="email" 
+                 placeholder="Enter Your Email"
+                 onChange={updateFields}
+                 name="email"
+                 value={email}
+                />
+                <input type="password" 
+                 placeholder="Enter Your Password"
+                 onChange={updateFields}
+                 name="password"
+                 value={password}
+                />
+                <input type="password" 
+                 placeholder="Confirm Your Password"
+                 onChange={updateFields}
+                 name="confirmPassword"
+                 value={confirmPassword}
+                />
+                <button>Submit</button>
+
+            </form>
+        </div>
+    )
+}
+
+
+export default FormValidation

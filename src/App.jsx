@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import Counter from './components/Counter'
-import Counter2 from './components/Counter2'
-
-
+import Fruit from './components/Fruit'
+import Form from './components/Form'
+import GoldSilver from './components/GoldSilver'
 function App() {
 
   return (
     <>
       {/* <Counter/> */}
-      <Counter2/>
+      {/* <GoldSilver/> */}
+      {/* <Fruit/> */}
+     <Form/>
     </>
   )
 }
