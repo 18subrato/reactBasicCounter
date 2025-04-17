@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import Counter from './components/Counter'
 import Fruit from './components/Fruit'
 import Form from './components/Form'
@@ -7,6 +7,7 @@ function App() {
 
   return (
     <>
+    <h1>UseState</h1>
       {/* <Counter/> */}
       {/* <GoldSilver/> */}
       {/* <Fruit/> */}
